@@ -7,7 +7,21 @@
   /* The actual angle can be defined as arctan(height / (2 * rain-angle * width)); 0% < rain-angle < 50% */
   --rain-angle: 5%;
   --rain-thickness: 3px;
+  /* Percentage value; 0% < rain-gap < 40% (assuming min_rain_gap is 0.1, so this may not be accurate) */
+  --rain-gap: 0.1;
   /* The number of rain lines (excluding the borders) is defined in Rain.tsx */
+  --ground-lines: 5;
+  --ground-thickness: 3px;
+  --ground-spacing: 25px;
+  --ground-gap: 0.1;
+
+  --num-bubbles: 4;
+
+  --num-hexagon-rows: 3;
+  --num-hexagon-columns: 5;
+  --hexagon-thickness: 3px;
+
+
 }
 
 @theme inline {
@@ -38,6 +52,7 @@ body {
   z-index: 3;
   height: 100%;
   width: 100%;
+  pointer-events: none;
 }
 
 .rain-cover-left {
@@ -56,6 +71,7 @@ body {
   background-color: var(--background);
   /* border-width: 5;
   border-color: var(--foreground); */
+  pointer-events: none;
 }
 
 .rain-cover-right {
@@ -74,6 +90,7 @@ body {
   background-color: var(--background);
   /* border-width: 5;
   border-color: var(--foreground); */
+  pointer-events: none;
 }
 
 .rain-border-left {
@@ -91,6 +108,7 @@ body {
   left: 0;
   clip-path: polygon(calc(100% - var(--rain-thickness)) 0%, 100% 0%, calc(var(--left-poly-2) * 100%) 100%, calc((var(--left-poly-2) * 100%) - var(--rain-thickness)) 100%);
   background-color: var(--water);
+  pointer-events: none;
 }
 
 .rain-border-right {
@@ -108,6 +126,7 @@ body {
   right: 0;
   clip-path: polygon(calc(var(--right-poly-1) * 100%) 0%, calc((var(--right-poly-1) * 100%) + var(--rain-thickness)) 0%, var(--rain-thickness) 100%, 0% 100%);
   background-color: var(--water);
+  pointer-events: none;
 }
 
 .rain-drops-left {
@@ -116,6 +135,7 @@ body {
   position: absolute;
   z-index: 2;
   left: 0;
+  pointer-events: none;
 }
 
 .rain-drops-right {
@@ -124,6 +144,7 @@ body {
   position: absolute;
   z-index: 2;
   right: 0;
+  pointer-events: none;
 }
 
 .rain-drop {
@@ -133,13 +154,32 @@ body {
   --true-offset: calc(var(--width-offset) - 1/2 * var(--left-poly-2) / (var(--rain-lines) + 0.5) * var(--right-offset) * 100%);
   --drop-x-1: calc(var(--left-poly-1) * 100% + var(--true-offset));
   --drop-x-2: calc((var(--left-poly-1) * 100% + var(--true-offset)) + var(--rain-thickness));
+  --cut-one-end: calc((var(--cut-one) + var(--rain-gap)) * 100%);
+  --cut-two-end: calc((var(--cut-two) + var(--rain-gap)) * 100%);
   position: absolute;
   z-index: 2;
   height: 100%;
   width: 100%;
   left: 0;
   clip-path: polygon(var(--drop-x-1) 0%, var(--drop-x-2) 0%, calc(var(--rain-thickness) + var(--true-offset)) 100%, var(--true-offset) 100%);
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%, black calc(var(--cut-one) * 100%),
+    transparent calc(var(--cut-one) * 100%), transparent var(--cut-one-end),
+    black var(--cut-one-end), black calc(var(--cut-two) * 100%),
+    transparent calc(var(--cut-two) * 100%), transparent var(--cut-two-end),
+    black var(--cut-two-end), black 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%, black calc(var(--cut-one) * 100%),
+    transparent calc(var(--cut-one) * 100%), transparent var(--cut-one-end),
+    black var(--cut-one-end), black calc(var(--cut-two) * 100%),
+    transparent calc(var(--cut-two) * 100%), transparent var(--cut-two-end),
+    black var(--cut-two-end), black 100%
+  );
   background-color: var(--water);
+  pointer-events: none;
 }
 
 .rain-text {
@@ -167,6 +207,23 @@ body {
   font-size: 32px;
 }
 
+.ground-cover {
+  position: relative;
+  flex: 1;
+  /* border-width: 5;
+  border-color: blue; */
+}
+
+.ground-line {
+  --true-width: calc(100% - var(--ground-cut) * 100%);
+  position: absolute;
+  height: var(--ground-thickness);
+  width: var(--true-width);
+  left: calc(var(--ground-cut) * 50%);
+  top: calc(var(--ground-offset) * 1px);
+  background-color: var(--water);
+}
+
 @keyframes split-left {
   from { clip-path: polygon(calc(var(--left-poly-1) * 100%) 0%, 100% 0%, calc(var(--left-poly-2) * 100%) 100%, 0% 100%); }
   to { clip-path: polygon(calc(var(--left-poly-1) * 100%) 0%, calc(var(--left-poly-1) * 100%) 0%, 0% 100%, 0% 100%); }
@@ -188,3 +245,46 @@ body {
 }
 
 /* Bubbles.tsx */
+
+.bubble {
+  position: absolute;
+  --bubble-diameter: calc(3 / (var(--num-bubbles) * 4) * 100%);
+  aspect-ratio: 1;
+  top: calc(var(--y-coord) * 100% - var(--bubble-diameter) / 2);
+  left: calc(var(--x-coord) * 100% - var(--bubble-diameter) / 2);
+  width: var(--bubble-diameter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  border-width: 2px;
+  border-radius: 50%;
+  border-color: var(--water);
+}
+
+/* Hexagons.tsx */
+
+.hexagon {
+  position: absolute;
+  left: calc(var(--x-coord) * 100cqw);
+  top: calc(var(--y-coord) * 100cqw);
+  transform: translateY(calc(var(--offset-multiplier) * 50%)) scale(1.015);
+  width: calc(4 / (3 * var(--num-hexagon-columns) + 1) * 100%);
+  aspect-ratio: 1.1547; /* hexagons are actually wider by this ratio than they are tall */
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  background-color: var(--water);
+}
+
+.hexagon-inside {
+  position: absolute;
+  left: calc(var(--hexagon-thickness) * 1.1547);
+  top: var(--hexagon-thickness);
+  width: calc(100% - (var(--hexagon-thickness) * 2 * 1.1547));
+  height: calc(100% - (var(--hexagon-thickness) * 2));
+  display: flex;
+  padding: 30px;
+  font-size: 20px;
+  justify-content: center;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  background-color: var(--background);
+}

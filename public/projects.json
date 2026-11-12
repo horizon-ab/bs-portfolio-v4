@@ -1,0 +1,18 @@
+{
+    "section" : "Projects",
+    "items" : [
+        {
+            "name" : "Bailey Bot",
+            "date" : "March 2026",
+            "description" : "Discord bot used to catch scammers.",
+            "link" : "https://github.com/horizon-ab/bailey-bot"
+        },
+        {
+            "name" : "Rizz AI",
+            "date" : "April 2023",
+            "description" : "AI-powered love advice",
+            "link" : "https://github.com/horizon-ab/bailey-bot"
+        }
+    ]
+    
+}
