@@ -246,9 +246,14 @@ body {
 
 /* Bubbles.tsx */
 
+.bubble-title {
+  text-align: center;
+  font-size: 60px;
+}
+
 .bubble {
   position: absolute;
-  --bubble-diameter: calc(3 / (var(--num-bubbles) * 4) * 100%);
+  --bubble-diameter: calc(2 / (var(--num-bubbles) * 3) * 100%);
   aspect-ratio: 1;
   top: calc(var(--y-coord) * 100% - var(--bubble-diameter) / 2);
   left: calc(var(--x-coord) * 100% - var(--bubble-diameter) / 2);
@@ -287,4 +292,20 @@ body {
   justify-content: center;
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   background-color: var(--background);
+}
+
+/* HexagonPage.tsx */
+
+.hp-title-box {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+}
+
+.hp-back {
+  font-size: 48px;
+}
+
+.hp-title {
+  text-align: center;
+  font-size: 60px;
 }

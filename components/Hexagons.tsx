@@ -1,3 +1,5 @@
+import Tidbit from "./Tidbit";
+
 interface HexagonStyles extends React.CSSProperties {
 	'--x-coord'?: number,
 	'--y-coord'?: number,
@@ -39,7 +41,7 @@ export default function Hexagons({ content }: HexagonProps) {
                 containerType: 'inline-size',
                 height: `${grid_height_cqw}cqw`
             }}
-            className="border-1 relative w-full overflow-hidden border-b-[3px] border-[var(--water)]"
+            className="relative w-full overflow-hidden border-[3px] border-[var(--water)]"
         >
             {[...Array((num_rows + 1) * num_columns)].map((_, index) => {
 
@@ -75,7 +77,9 @@ export default function Hexagons({ content }: HexagonProps) {
 
                 return (
                         <div key={index} className="hexagon" style={styles}>
-                            <div className="hexagon-inside">{name}</div>
+                            <div className="hexagon-inside">
+                                <Tidbit name={name} date={date} description={description} link={link} />
+                            </div>
                         </div>
                 );
                 

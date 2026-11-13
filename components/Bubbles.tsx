@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface BubbleStyles extends React.CSSProperties {
 	'--x-coord'?: number,
 	'--y-coord'?: number
@@ -6,6 +8,7 @@ interface BubbleStyles extends React.CSSProperties {
 const num_bubbles = 4;
 
 const categories = ["Work", "Projects", "Fun", "Contact Me"]
+const category_links = ["work", "projects", "fun", "contact"]
 
 function generate_coords(ind: number, num_bubbles: number) {
 
@@ -42,7 +45,9 @@ function generate_coords(ind: number, num_bubbles: number) {
 
 export default function Bubbles() {
 	return (
-		<div className="border-1 relative h-dvh">
+		<div className="flex flex-col gap-10 p-20">
+			<div className="bubble-title">Stuff I Do</div>
+			<div className="relative h-dvh border-[10px] border-[var(--water)] border-double">
 			{[...Array(num_bubbles)].map((_, index) => {
 
 				const [x, y] = generate_coords(index, num_bubbles);
@@ -52,8 +57,17 @@ export default function Bubbles() {
 					'--y-coord' : y
 				}
 
-				return <div key={index} className="bubble" style={styles}>{categories[index]}</div>
+				return <Link
+					href={`/${category_links[index]}`}
+					key={index}
+					className="bubble"
+					style={styles}
+				>
+					{categories[index]}
+				</Link>
 			})}
 		</div>
+		</div>
+		
 	);
 }
