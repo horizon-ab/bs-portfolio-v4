@@ -6,9 +6,6 @@ interface HexagonStyles extends React.CSSProperties {
     '--offset-multiplier'?: number,
 }
 
-/* Make the same as in globals.css */
-const num_rows = 3;
-const num_columns = 5;
 
 interface HexagonProps {
     content: JSONContent;
@@ -17,6 +14,8 @@ interface HexagonProps {
 export interface JSONContent {
     section: string;
     items: JSONTidbit[];
+    rows: number;
+    columns: number;
 }
 
 export interface JSONTidbit {
@@ -26,15 +25,16 @@ export interface JSONTidbit {
     link: string;
 }
 
-const sample_content = ["Bailey-Bot", "Rizz-AI", "Gaucho Racing"]
-
 export default function Hexagons({ content }: HexagonProps) {
+
+    const num_rows = content.rows;
+    const num_columns = content.columns; /* Make the same as in globals.css */
 
     const total_width = (3 * num_columns + 1) / 2;
     const hex_width_fraction = 2 / total_width;
     const hex_height_fraction = hex_width_fraction / 1.1547;
 
-    const grid_height_cqw = (num_rows + 0.5) * hex_height_fraction * 100;
+    const grid_height_cqw = (num_rows + 1) * hex_height_fraction * 100;
 
     return (
         <div style={{

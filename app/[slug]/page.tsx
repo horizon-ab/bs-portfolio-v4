@@ -3,6 +3,7 @@ import * as fs from "node:fs/promises"
 
 import Hexagons, { type JSONContent } from "@/components/Hexagons";
 import BackButton from "@/components/BackButton";
+import Link from "next/link";
 
 export async function generateStaticParams() {
     const filePaths = await fs.readdir(path.join(process.cwd(), "content"))
@@ -24,7 +25,7 @@ export default async function HexagonPage({
     const jsonContent: JSONContent = JSON.parse(data)
 
     return (
-        <div>
+        <div className="hexagon-page">
             <div className="hp-title-box">
                 <BackButton props="Back" />
                 <div className="hp-title">{jsonContent.section}</div>

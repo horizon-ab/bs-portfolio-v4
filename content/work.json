@@ -2,17 +2,17 @@
     "section" : "Work",
     "items" : [
         {
-            "name" : "Bailey Bot",
-            "date" : "March 2026",
-            "description" : "Discord bot used to catch scammers.",
-            "link" : "https://github.com/horizon-ab/bailey-bot"
+            "name" : "Centrova",
+            "date" : "Dec 2024 - Dec 2025",
+            "description" : "Wrote API for evaluating patients on potential clinical trials using AI + Implemented RBAC for users"
         },
         {
-            "name" : "Rizz AI",
-            "date" : "April 2023",
-            "description" : "AI-powered love advice",
-            "link" : "https://github.com/horizon-ab/bailey-bot"
+            "name" : "IBM",
+            "date" : "Jun 2026 - Sep 2026",
+            "description" : "Developed E2E testing pipeline for Kubernetes cluster deployment services creating Presto SQL engines"
         }
-    ]
+    ],
+    "rows" : 11,
+    "columns" : 5
     
 }

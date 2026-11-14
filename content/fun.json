@@ -2,17 +2,38 @@
     "section" : "Fun",
     "items" : [
         {
-            "name" : "Bailey Bot",
-            "date" : "March 2026",
-            "description" : "Discord bot used to catch scammers.",
-            "link" : "https://github.com/horizon-ab/bailey-bot"
+            "name" : "Breaking",
+            "description" : "I break(dance) in my free time."
         },
         {
-            "name" : "Rizz AI",
-            "date" : "April 2023",
-            "description" : "AI-powered love advice",
-            "link" : "https://github.com/horizon-ab/bailey-bot"
+            "description" : "Right now I'm trying to work on windmills. I think it's a real rite of passage for anyone who wants to stick with it."
+        },
+        {
+            "description" : "My footwork has been cleaner lately, but I want to train for speed and flow with my other moves."
+        },
+        {
+            "description" : "I've also been trying out popping and locking. Hopefully I can stick to them in the future."
+        },
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {
+            "name" : "Drawing"
+        },
+        {
+            "description" : "I've been getting into sketching. Mainly just line art."
+        },
+        {
+            "description" : "I've been alternating going through linework tutorials and just doodling faces I like."
+        },
+        {
+            "description" : "When I get good enough I plan to add some doodles to this website, so stay tuned..."
         }
-    ]
+    ],
+    "rows" : 11,
+    "columns" : 5
     
 }

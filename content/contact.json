@@ -2,17 +2,19 @@
     "section" : "Contact Me",
     "items" : [
         {
-            "name" : "Bailey Bot",
-            "date" : "March 2026",
-            "description" : "Discord bot used to catch scammers.",
-            "link" : "https://github.com/horizon-ab/bailey-bot"
+            "name" : "Email",
+            "link" : "mailto:baileyasay@gmail.com"
         },
         {
-            "name" : "Rizz AI",
-            "date" : "April 2023",
-            "description" : "AI-powered love advice",
-            "link" : "https://github.com/horizon-ab/bailey-bot"
+            "name" : "Github",
+            "link" : "https://github.com/horizon-ab/"
+        },
+        {
+            "name" : "LinkedIn",
+            "link" : "https://www.linkedin.com/in/bailey-say-2a64b3266/"
         }
-    ]
+    ],
+    "rows" : 12,
+    "columns" : 5
     
 }

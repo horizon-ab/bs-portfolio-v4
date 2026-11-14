@@ -17,7 +17,7 @@
 
   --num-bubbles: 4;
 
-  --num-hexagon-rows: 3;
+  --num-hexagon-rows: 6;
   --num-hexagon-columns: 5;
   --hexagon-thickness: 3px;
 
@@ -29,7 +29,7 @@
   --color-foreground: var(--foreground);
   --color-water: var(--water);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-b612-mono);
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -42,10 +42,25 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-b612-mono), monospace;
   /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 /* Rain.tsx */
+
+/* Basically I had to move Rain.tsx to layout so I can simply just hide it
+ * Honestly I kind of hate dumb workarounds cuz they usually bite me in the ass later but I'm hoping this will be a simple project
+ * Also I did end up asking Opus for this idea (cuz I would never think of something so makeshift)
+/*
+
+/* Hide rain animation on sub-pages (it stays mounted in layout to preserve animation state) */
+/* Using visibility + height instead of display:none to prevent animation restart */
+body:has(.hexagon-page) .rain-wrapper {
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+}
 
 .rain-cover {
   position: absolute;
@@ -302,6 +317,8 @@ body {
 }
 
 .hp-back {
+  border-color: var(--water);
+  border-width: 1px;
   font-size: 48px;
 }
 

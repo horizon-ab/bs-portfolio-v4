@@ -52,7 +52,7 @@ function generate_cuts() {
 export default function Rain() {
 
 	return (
-		<div className="flex flex-col h-dvh m-10 gap-10">
+		<div className="rain-wrapper flex flex-col h-dvh m-10 gap-10">
 			<div className="relative flex-5">
 				<div className="rain-cover">
 					<div className="rain-cover-left" />

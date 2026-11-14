@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Anta } from "next/font/google";
+import { Geist, Geist_Mono, Anta, B612_Mono } from "next/font/google";
 import "./globals.css";
+
+import Rain from "@/components/Rain";
+
+const b612_mono = B612_Mono({
+  variable: "--font-b612-mono",
+  subsets: ["latin"],
+  weight: "400"
+})
 
 const anta = Anta({
   variable: "--font-anta",
@@ -27,9 +35,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${anta.variable} h-full antialiased`}
+      className={`${b612_mono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Rain />
+        {children}
+      </body>
     </html>
   );
 }
