@@ -1,3 +1,6 @@
+'use client'
+
+import { useState, useEffect } from "react"
 import Tidbit from "./Tidbit";
 
 interface HexagonStyles extends React.CSSProperties {
@@ -16,6 +19,8 @@ export interface JSONContent {
     items: JSONTidbit[];
     rows: number;
     columns: number;
+    mobile_rows: number;
+    mobile_columns: number
 }
 
 export interface JSONTidbit {
@@ -26,9 +31,19 @@ export interface JSONTidbit {
 }
 
 export default function Hexagons({ content }: HexagonProps) {
+    const [isMobile, setIsMobile] = useState(false);
 
-    const num_rows = content.rows;
-    const num_columns = content.columns;
+    useEffect(() => {
+        const mql = window.matchMedia("(max-width: 768px)");
+        setIsMobile(mql.matches);
+
+        const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+        mql.addEventListener("change", onChange);
+        return () => mql.removeEventListener("change", onChange);
+    }, []);
+
+    const num_rows = isMobile ? content.mobile_rows : content.rows;
+    const num_columns = isMobile ? content.mobile_columns : content.columns;
 
     const total_width = (3 * num_columns + 1) / 2;
     const hex_width_fraction = 2 / total_width;
@@ -38,7 +53,7 @@ export default function Hexagons({ content }: HexagonProps) {
     return (
         <div className="w-full border-[3px] border-[var(--water)]">
             <div
-                style={{ containerType: 'inline-size', aspectRatio: grid_aspect_ratio }}
+                style={{ containerType: 'inline-size', aspectRatio: grid_aspect_ratio, '--num-hexagon-columns': num_columns } as React.CSSProperties}
                 className="relative w-full overflow-hidden"
             >
             {[...Array((num_rows + 1) * num_columns)].map((_, index) => {

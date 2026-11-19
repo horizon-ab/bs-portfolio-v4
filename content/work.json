@@ -13,6 +13,8 @@
         }
     ],
     "rows" : 3,
-    "columns" : 5
+    "columns" : 5,
+    "mobile_rows" : 15,
+    "mobile_columns" : 1
     
 }
