@@ -31,9 +31,27 @@
         },
         {
             "description" : "When I get good enough I plan to add some doodles to this website, so stay tuned..."
+        },
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {
+            "name" : "Lyrics"
+        },
+        {
+            "description" : "You might be wondering where the big quote in the home screen comes from."
+        },
+        {
+            "description" : "It's from the song Ice Melt by Crumb, which is a psychedelic rock band."
+        },
+        {
+            "description" : "This might be a recurring theme for this website, but it reminds me of how I view life."
         }
     ],
-    "rows" : 5,
+    "rows" : 7,
     "columns" : 5
     
 }
