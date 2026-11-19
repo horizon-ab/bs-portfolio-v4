@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Rain />
         {children}
       </body>
-      <GoogleAnalytics gaId="GTM-W24PBBMQ" />
+      <GoogleAnalytics gaId="G-K04XWGF5BY" />
     </html>
   );
 }
