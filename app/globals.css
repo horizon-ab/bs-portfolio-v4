@@ -208,11 +208,11 @@ body:has(.hexagon-page) .rain-wrapper {
 }
 
 .rain-text-catch {
-  font-size: clamp(2.25rem, 7vw, 6rem);
+  font-size: clamp(2.5rem, 7vw, 6rem);
 }
 
 .rain-text-site {
-  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-size: clamp(1.75rem, 5vw, 3.75rem);
 }
 
 .ground-cover {
