@@ -34,21 +34,23 @@ export default function Hexagons({ content }: HexagonProps) {
     const hex_width_fraction = 2 / total_width;
     const hex_height_fraction = hex_width_fraction / 1.1547;
 
-    const grid_height_cqw = (num_rows + 1) * hex_height_fraction * 100;
+    const grid_aspect_ratio = 1 / ((num_rows + 0.5) * hex_height_fraction);
 
     return (
-        <div style={{
-                containerType: 'inline-size',
-                height: `${grid_height_cqw}cqw`
-            }}
-            className="relative w-full overflow-hidden border-[3px] border-[var(--water)]"
-        >
+        <div className="w-full border-[3px] border-[var(--water)]">
+            <div style={{
+                    containerType: 'inline-size',
+                    aspectRatio: grid_aspect_ratio,
+                }}
+                className="relative w-full overflow-hidden"
+            >
             {[...Array((num_rows + 1) * num_columns)].map((_, index) => {
-
-                if (index > num_rows * num_columns && index % 2 == 0) return null;
 
                 const x_ind = index % num_columns;
                 const y_ind = Math.floor(index / num_columns);
+
+                // Extra row: only render even columns (the half-hexagons at the bottom)
+                if (y_ind === num_rows && x_ind % 2 === 1) return null;
 
                 
                 const x = x_ind * (3/2) / total_width;
@@ -84,6 +86,7 @@ export default function Hexagons({ content }: HexagonProps) {
                 );
                 
             })}
+            </div>
         </div>
     );
 }

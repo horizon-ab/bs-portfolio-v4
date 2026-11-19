@@ -21,7 +21,7 @@
   --num-hexagon-columns: 5;
   --hexagon-thickness: 3px;
 
-
+  --back-button-thickness: 3px;
 }
 
 @theme inline {
@@ -61,6 +61,19 @@ body:has(.hexagon-page) .rain-wrapper {
   margin: 0;
   overflow: hidden;
 }
+
+/*
+ * Weird bug: if I move bubbles to layout; go to one of the hexagon pages, and then come back,
+ * then all four bubbles' positions move near the top of the tank, although their positions and velocities
+ * appear to stay consistent enough? Personally I don't want to touch it.
+/*
+
+/* body:has(.hexagon-page) .bubble-container {
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+} */
 
 .rain-cover {
   position: absolute;
@@ -325,4 +338,40 @@ body:has(.hexagon-page) .rain-wrapper {
 .hp-title {
   text-align: center;
   font-size: 60px;
+  width: 75cqw;
+}
+
+/* BackButton.tsx */
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.back-button-box {
+  width: auto;
+  height: 100%;
+  aspect-ratio: 1;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.back-button-icon {
+  --theta: calc(tan(1/2));
+  --phi: calc(90 - var(--theta));
+  --h1: calc(var(--back-button-thickness) * 1 / sin(var(--phi)));
+  --h2: calc(var(--back-button-thickness) * 1 / sin(var(--theta)));
+  width: auto;
+  height: 100%;
+  aspect-ratio: 1;
+  background-color: var(--water);
+  clip-path: polygon(
+    100% 0%,
+    100% var(--h1),
+    var(--h2) 50%,
+    100% calc(100% - var(--h1)),
+    100% 100%,
+    0% 50%
+  )
 }

@@ -5,6 +5,10 @@ export default function BackButton({ props }: { props: string }) {
     const router = useRouter();
     
     return (
-        <button onClick={() => router.back()}>{props}</button>
+        <div className="back-button-container">
+            <button onClick={() => router.back()} className="back-button-box">
+                 <div className="back-button-icon" />
+            </button>
+        </div>
     )
 }

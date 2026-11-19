@@ -12,7 +12,7 @@
             "description" : "Developed E2E testing pipeline for Kubernetes cluster deployment services creating Presto SQL engines"
         }
     ],
-    "rows" : 11,
+    "rows" : 3,
     "columns" : 5
     
 }
