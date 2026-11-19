@@ -8,7 +8,7 @@ export default function Tidbit({ name, date, description, link }: {name: string,
                 {date ? <div className="text-center text-xs sm:text-sm">{date}</div> : null}
             </div>
             {description ? <div className="text-xs sm:text-sm md:text-base">{description}</div> : null}
-            {link ? <Link href={link} target="_blank" rel="noopener noreferrer" className="text-center">Link</Link> : null}
+            {link ? <Link href={link} target="_blank" rel="noopener noreferrer" className="text-xs sm:text-sm md-text-base text-center">Link</Link> : null}
         </div>
     );
 }

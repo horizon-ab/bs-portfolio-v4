@@ -267,7 +267,7 @@ body:has(.hexagon-page) .rain-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 8px;
   border-width: 2px;
   border-radius: 50%;
   border-color: var(--water);
