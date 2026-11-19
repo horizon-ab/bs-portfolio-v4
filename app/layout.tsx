@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { B612_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Rain />
         {children}
       </body>
+      <GoogleAnalytics gaId="G-K04XWGF5BY" />
     </html>
   );
 }
