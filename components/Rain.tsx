@@ -24,26 +24,15 @@ const ground_spacing: number = 25;
 const ground_cut: number = 0.2;
 
 function generate_cuts() {
-	let cut_one, cut_two;
-
 	const choice = Math.random();
-	// if (choice < 0.33) {
-	// 	cut_one = 1;
-	// 	cut_two = 2;
-	// } else if (choice < 0.66) {
-	// 	cut_one = Math.random() * (1 - rain_gap - min_rain_gap)
-	// 	cut_two = 1;
-	// } else {
-	// 	cut_one = Math.random() * (0.5 - rain_gap - min_rain_gap);
-	// 	cut_two = Math.random() * (0.5 - rain_gap - min_rain_gap) + 0.5;
-	// }
 
+	let cut_one, cut_two;
 	if (choice < 0.5) {
-		cut_one = Math.random() * (1 - rain_gap - min_rain_gap)
-	 	cut_two = 1;
+		cut_one = Math.random() * (1 - rain_gap - min_rain_gap);
+		cut_two = 1;
 	} else {
 		cut_one = Math.random() * (0.5 - rain_gap - min_rain_gap);
-	 	cut_two = Math.random() * (0.5 - rain_gap - min_rain_gap) + 0.5;
+		cut_two = Math.random() * (0.5 - rain_gap - min_rain_gap) + 0.5;
 	}
 
 	return [cut_one, cut_two];

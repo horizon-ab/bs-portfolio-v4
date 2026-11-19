@@ -43,37 +43,24 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-b612-mono), monospace;
-  /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 /* Rain.tsx */
 
-/* Basically I had to move Rain.tsx to layout so I can simply just hide it
- * Honestly I kind of hate dumb workarounds cuz they usually bite me in the ass later but I'm hoping this will be a simple project
- * Also I did end up asking Opus for this idea (cuz I would never think of something so makeshift)
 /*
+ * Rain is mounted in layout.tsx (not page.tsx) so that the one-shot CSS animation
+ * plays once on initial load and doesn't replay on client-side navigation.
+ * On sub-pages, the wrapper is hidden via visibility+height so the animation
+ * state is preserved and won't restart when navigating back to home.
+ */
 
-/* Hide rain animation on sub-pages (it stays mounted in layout to preserve animation state) */
-/* Using visibility + height instead of display:none to prevent animation restart */
+/* Hide rain on sub-pages without destroying the animation state */
 body:has(.hexagon-page) .rain-wrapper {
   visibility: hidden;
   height: 0;
   margin: 0;
   overflow: hidden;
 }
-
-/*
- * Weird bug: if I move bubbles to layout; go to one of the hexagon pages, and then come back,
- * then all four bubbles' positions move near the top of the tank, although their positions and velocities
- * appear to stay consistent enough? Personally I don't want to touch it.
-/*
-
-/* body:has(.hexagon-page) .bubble-container {
-  visibility: hidden;
-  height: 0;
-  margin: 0;
-  overflow: hidden;
-} */
 
 .rain-cover {
   position: absolute;
@@ -97,8 +84,6 @@ body:has(.hexagon-page) .rain-wrapper {
   left: 0;
   clip-path: polygon(calc(var(--left-poly-1) * 100%) 0%, 100% 0%, calc(var(--left-poly-2) * 100%) 100%, 0% 100%);
   background-color: var(--background);
-  /* border-width: 5;
-  border-color: var(--foreground); */
   pointer-events: none;
 }
 
@@ -116,8 +101,6 @@ body:has(.hexagon-page) .rain-wrapper {
   right: 0;
   clip-path: polygon(calc(var(--right-poly-1) * 100%) 0%, 100% 0%, calc(var(--right-poly-2) * 100%) 100%, 0% 100%);
   background-color: var(--background);
-  /* border-width: 5;
-  border-color: var(--foreground); */
   pointer-events: none;
 }
 
@@ -215,7 +198,6 @@ body:has(.hexagon-page) .rain-wrapper {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  margin: 20%;
   width: 70%;
   height: 70%;
   top: 0;
@@ -223,8 +205,6 @@ body:has(.hexagon-page) .rain-wrapper {
   left: 0;
   right: 0;
   margin: auto;
-  /* border-width: 5;
-  border-color: green; */
 }
 
 .rain-text-catch {
@@ -238,8 +218,6 @@ body:has(.hexagon-page) .rain-wrapper {
 .ground-cover {
   position: relative;
   flex: 1;
-  /* border-width: 5;
-  border-color: blue; */
 }
 
 .ground-line {
